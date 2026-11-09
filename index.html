@@ -85,6 +85,49 @@ nav.fixed, nav[class*="fixed"]{z-index:50!important;pointer-events:auto!importan
 nav button, .nav-btn{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;position:relative;z-index:51}
 #adminApp header button, #adminApp main button{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important}
 #adminApp .safe-b{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
+
+/* ===== GLASS UI v2 (override layer) ===== */
+:root{--g-bg:rgba(255,255,255,.55);--g-bd:rgba(255,255,255,.7);--g-in:rgba(255,255,255,.65);--g-ib:rgba(14,165,233,.18);--g-tx:#0f172a;--g-mu:#64748b;--g-sh:0 10px 40px rgba(2,132,199,.10),inset 0 1px 0 rgba(255,255,255,.8)}
+html.dark{--g-bg:rgba(30,41,59,.45);--g-bd:rgba(255,255,255,.10);--g-in:rgba(15,23,42,.55);--g-ib:rgba(148,163,184,.2);--g-tx:#e2e8f0;--g-mu:#94a3b8;--g-sh:0 10px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08)}
+body{background-attachment:fixed}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none}
+body::before{width:300px;height:300px;top:-60px;left:-80px;background:#38bdf8}
+body::after{width:340px;height:340px;bottom:60px;right:-120px;background:#818cf8;opacity:.35}
+html.dark body::before{opacity:.28}html.dark body::after{opacity:.2}
+.glass-card{background:var(--g-bg)!important;border:1px solid var(--g-bd)!important;box-shadow:var(--g-sh)!important;border-radius:1.5rem!important;backdrop-filter:saturate(170%) blur(22px)!important;-webkit-backdrop-filter:saturate(170%) blur(22px)!important}
+header.glass{margin:8px 10px 0;border-radius:1.25rem;border:1px solid var(--g-bd)!important;background:var(--g-bg)!important;box-shadow:var(--g-sh)!important}
+header.glass h1{letter-spacing:-.01em;background:linear-gradient(90deg,#0369a1,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.dark header.glass h1{background:linear-gradient(90deg,#7dd3fc,#a5b4fc);-webkit-background-clip:text;background-clip:text}
+header.glass button{width:38px;height:38px;display:grid;place-items:center;padding:0!important;border-radius:12px;background:var(--g-in);border:1px solid var(--g-bd);transition:.15s}
+header.glass button:active{transform:scale(.92)}
+h2.font-bold{letter-spacing:-.02em}
+h3.uppercase{letter-spacing:.08em;font-size:11px!important}
+input:not([type=checkbox]):not([type=radio]),select,textarea{background:var(--g-in)!important;border:1px solid var(--g-ib)!important;border-radius:14px!important;color:var(--g-tx);transition:.15s;box-shadow:inset 0 1px 2px rgba(15,23,42,.04)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0ea5e9!important;box-shadow:0 0 0 4px rgba(14,165,233,.15)!important}
+input::placeholder{color:var(--g-mu);opacity:.8}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:6px;border:1.5px solid var(--g-ib);background:var(--g-in);display:inline-grid;place-content:center;vertical-align:middle;margin-right:2px;transition:.15s}
+input[type=checkbox]:checked{background:linear-gradient(135deg,#0ea5e9,#6366f1);border-color:transparent}
+input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:12px;font-weight:700;line-height:1}
+button.bg-brand-600,button.bg-brand-500{background:linear-gradient(135deg,#0ea5e9,#4f46e5)!important;box-shadow:0 8px 22px rgba(79,70,229,.28),inset 0 1px 0 rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.25)}
+button.bg-brand-600:active,button.bg-brand-500:active{transform:scale(.98)}
+button.bg-white{background:var(--g-bg)!important;border:1px solid var(--g-bd)!important;backdrop-filter:blur(14px)}
+button.bg-emerald-600{background:linear-gradient(135deg,#10b981,#059669)!important;box-shadow:0 8px 22px rgba(16,185,129,.28)}
+#adminApp nav{left:12px!important;right:12px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;border-radius:1.6rem;border:1px solid var(--g-bd)!important;background:var(--g-bg)!important;box-shadow:0 12px 40px rgba(2,132,199,.18),inset 0 1px 0 rgba(255,255,255,.7);backdrop-filter:saturate(180%) blur(24px);-webkit-backdrop-filter:saturate(180%) blur(24px);padding-bottom:0}
+#adminApp nav .nav-btn{border-radius:1rem;min-width:48px;transition:.2s}
+#adminApp nav .nav-btn.text-brand-600{background:linear-gradient(135deg,rgba(14,165,233,.2),rgba(99,102,241,.2));box-shadow:inset 0 0 0 1px rgba(14,165,233,.25)}
+#adminApp .safe-b{padding-bottom:calc(6.5rem + env(safe-area-inset-bottom,0px))}
+#adminApp main,#customerApp main{overflow-x:hidden}
+/* kartu cabang */
+.br-card{border-radius:1.25rem;padding:14px;background:var(--g-in);border:1px solid var(--g-ib);display:flex;flex-direction:column;gap:10px}
+.br-lbl{display:block;font-size:11px;font-weight:600;color:var(--g-mu);margin-bottom:4px;letter-spacing:.02em}
+.br-days{display:flex;flex-wrap:wrap;gap:6px}
+.br-days label{display:inline-flex;align-items:center;gap:5px;padding:5px 10px 5px 7px;border-radius:999px;font-size:12px;background:var(--g-in);border:1px solid var(--g-ib)}
+.court-row{display:grid;grid-template-columns:minmax(64px,.8fr) 1fr 1fr auto;gap:8px;align-items:end;padding:10px;border-radius:14px;background:rgba(14,165,233,.06);border:1px solid var(--g-ib)}
+.court-row .cn{font-size:12px;font-weight:700;align-self:center;grid-row:1/3}
+.court-row input{width:100%;min-width:0;padding:8px 10px;font-size:14px!important}
+.court-row .px{font-size:10px;color:var(--g-mu);font-weight:600;margin-bottom:2px}
+.court-row .rm{width:32px;height:32px;border-radius:10px;color:#ef4444;background:rgba(239,68,68,.1);align-self:center}
+.br-add{align-self:flex-start;font-size:12px;font-weight:600;color:#0284c7;padding:7px 14px;border-radius:999px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.25)}
 </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen">
@@ -1122,17 +1165,20 @@ document.getElementById("sDepositPct").value=settings.depositPct;document.getEle
 const ch=byId("sCancelHours");if(ch)ch.value=settings.cancelHours!=null?settings.cancelHours:2;
 document.getElementById("sQrisUrl").value=settings.qrisUrl||"";document.getElementById("sPayInfo").value=settings.payInfo||"";document.getElementById("sDriveUrl").value=settings.driveUrl||"";
 renderBranchSettings()}
-function renderBranchSettings(){document.getElementById("branchSettings").innerHTML=settings.branches.map((br,bi)=>`<div class="border dark:border-slate-800 rounded-xl p-3 space-y-2">
-<div class="flex gap-2"><input data-bi="${bi}" data-f="name" value="${esc(br.name)}" class="flex-1 border dark:bg-slate-800 rounded-lg px-2 py-1.5 text-sm font-medium"/>
-${settings.branches.length>1?`<button onclick="removeBranch(${bi})" class="text-red-500 text-xs px-2">Hapus</button>`:""}</div>
-<input data-bi="${bi}" data-f="address" value="${esc(br.address)}" placeholder="Alamat" class="w-full border dark:bg-slate-800 rounded-lg px-2 py-1.5 text-xs"/>
-<div class="grid grid-cols-2 gap-2 text-xs"><label>Buka (jam)<input type="number" min="0" max="23" data-bi="${bi}" data-f="openHour" onchange="fixHours(${bi})" value="${br.openHour}" class="w-full border dark:bg-slate-800 rounded px-2 py-1"/></label>
-<label>Tutup (jam)<input type="number" min="1" max="24" data-bi="${bi}" data-f="closeHour" onchange="fixHours(${bi})" value="${br.closeHour}" class="w-full border dark:bg-slate-800 rounded px-2 py-1"/></label></div>
-<div class="flex flex-wrap gap-x-2 gap-y-1 text-[11px]"><span class="text-slate-500">Libur mingguan:</span>${days.map((n,i)=>`<label><input type="checkbox" data-bi="${bi}" data-f="closedDay" data-d="${i}" ${br.closedDays.includes(i)?"checked":""}/> ${n.slice(0,3)}</label>`).join("")}</div>
-<input data-bi="${bi}" data-f="holidays" value="${esc(br.holidays.join(", "))}" placeholder="Tanggal libur: 2026-12-25, 2027-01-01" class="w-full border dark:bg-slate-800 rounded-lg px-2 py-1.5 text-xs"/>
-${br.courts.map((c,ci)=>`<div class="grid grid-cols-[1fr_1fr_1fr_auto] gap-1 items-center"><span class="text-xs">${esc(c.name)}</span>
-<input type="number" data-bi="${bi}" data-ci="${ci}" data-f="priceNormal" value="${c.priceNormal}" class="border dark:bg-slate-800 rounded px-1 py-1 text-xs"/>
-<input type="number" data-bi="${bi}" data-ci="${ci}" data-f="pricePeak" value="${c.pricePeak}" class="border dark:bg-slate-800 rounded px-1 py-1 text-xs"/>${br.courts.length>1?`<button onclick="removeCourt(${bi},${ci})" class="text-red-500 text-xs px-1">✕</button>`:"<span></span>"}</div>`).join("")}<button onclick="addCourt(${bi})" class="text-xs text-brand-600">+ Lapangan</button></div>`).join("")}
+function renderBranchSettings(){document.getElementById("branchSettings").innerHTML=settings.branches.map((br,bi)=>`<div class="br-card">
+<div class="flex gap-2 items-center"><input data-bi="${bi}" data-f="name" value="${esc(br.name)}" class="flex-1 min-w-0 px-3 py-2 text-sm font-semibold"/>
+${settings.branches.length>1?`<button onclick="removeBranch(${bi})" class="text-red-500 text-xs font-semibold px-3 py-2 rounded-xl bg-red-500/10">Hapus</button>`:""}</div>
+<input data-bi="${bi}" data-f="address" value="${esc(br.address)}" placeholder="Alamat" class="w-full px-3 py-2 text-sm"/>
+<div class="grid grid-cols-2 gap-2"><label><span class="br-lbl">Buka (jam)</span><input type="number" min="0" max="23" data-bi="${bi}" data-f="openHour" onchange="fixHours(${bi})" value="${br.openHour}" class="w-full px-3 py-2"/></label>
+<label><span class="br-lbl">Tutup (jam)</span><input type="number" min="1" max="24" data-bi="${bi}" data-f="closeHour" onchange="fixHours(${bi})" value="${br.closeHour}" class="w-full px-3 py-2"/></label></div>
+<div><span class="br-lbl">Libur mingguan</span><div class="br-days">${days.map((n,i)=>`<label><input type="checkbox" data-bi="${bi}" data-f="closedDay" data-d="${i}" ${br.closedDays.includes(i)?"checked":""}/>${n.slice(0,3)}</label>`).join("")}</div></div>
+<label><span class="br-lbl">Tanggal libur</span><input data-bi="${bi}" data-f="holidays" value="${esc(br.holidays.join(", "))}" placeholder="2026-12-25, 2027-01-01" class="w-full px-3 py-2 text-sm"/></label>
+<div><span class="br-lbl">Lapangan &amp; tarif per jam</span><div class="space-y-2">
+${br.courts.map((c,ci)=>`<div class="court-row"><span class="cn">${esc(c.name)}</span>
+<div><div class="px">Normal</div><input type="number" data-bi="${bi}" data-ci="${ci}" data-f="priceNormal" value="${c.priceNormal}"/></div>
+<div><div class="px">Peak</div><input type="number" data-bi="${bi}" data-ci="${ci}" data-f="pricePeak" value="${c.pricePeak}"/></div>
+${br.courts.length>1?`<button onclick="removeCourt(${bi},${ci})" class="rm" style="grid-row:1/3">✕</button>`:"<span></span>"}</div>`).join("")}</div></div>
+<button onclick="addCourt(${bi})" class="br-add">+ Lapangan</button></div>`).join("")}
 function fixHours(bi){const q=f=>document.querySelector(`#branchSettings [data-bi="${bi}"][data-f="${f}"]`),o=q("openHour"),c=q("closeHour");if(!o||!c)return;
 let ov=clamp(o.value,0,23,8),cv=clamp(c.value,1,24,23);if(cv<=ov){toast("Jam tutup harus setelah jam buka");cv=Math.min(24,ov+1);if(cv<=ov)ov=cv-1}o.value=ov;c.value=cv}
 function readBranchInputs(){if(!document.querySelector("#branchSettings [data-bi]"))return;
